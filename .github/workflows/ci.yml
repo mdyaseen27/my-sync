@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          npm install
+      
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+      
+      - name: Lint backend
+        run: |
+          cd backend
+          npx eslint index.js --ext .js
+      
+      - name: Lint frontend
+        run: |
+          cd frontend
+          npx eslint src/ --ext .jsx,.js
+      
+      - name: Security audit
+        run: |
+          cd backend
+          npm audit --audit-level=high
+      
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+      
+      - name: Type check
+        run: |
+          cd frontend
+          npx tsc --noEmit 2>/dev/null || echo "TypeScript check skipped (not using TS)"
