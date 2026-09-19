@@ -63,7 +63,7 @@ export default function App() {
     try {
       const result = await api.verifyPin(fullPin);
       setPin(fullPin);
-      setSalt(result.salt);
+      setSalt(Uint8Array.from(atob(result.salt), c => c.charCodeAt(0)));
       setState('session');
       initSocketDirect();
     } catch (err) { setVerifyError(err.message); }
