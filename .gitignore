@@ -29,4 +29,12 @@ coverage/
 
 # Misc
 *.tsbuildinfo
-next-env.dynamicvite
+next-env.dynamic
+
+# Build artifacts
+cd
+my-sync-backend@1.0.0
+my-sync-frontend@1.0.0
+vite
+frontend/dist/
+backend/frontend/dist/
