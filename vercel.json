@@ -8,5 +8,6 @@
       "source": "/api/:path*",
       "destination": "https://my-sync.onrender.com/api/:path*"
     }
-  ]
+  ],
+  "outputDirectory": "frontend/dist"
 }
