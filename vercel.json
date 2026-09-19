@@ -3,10 +3,10 @@
   "devCommand": "cd frontend && npm run dev",
   "installCommand": "cd frontend && npm install",
   "framework": "vite",
-  "regions": ["iad1"],
   "rewrites": [
     {
       "source": "/api/:path*",
+<<<<<<< HEAD
       "destination": "https://my-sync.onrender.com/api/"
     }
   ],
@@ -16,3 +16,9 @@
     }
   }
 }
+=======
+      "destination": "https://my-sync.onrender.com/api/:path*"
+    }
+  ]
+}
+>>>>>>> 509f100 (Update Render URL to my-sync.onrender.com)
