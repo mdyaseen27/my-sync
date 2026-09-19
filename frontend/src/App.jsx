@@ -63,7 +63,10 @@ export default function App() {
     try {
       const result = await api.verifyPin(fullPin);
       setPin(fullPin);
-      setSalt(Uint8Array.from(atob(result.salt), c => c.charCodeAt(0)));
+      const hex = result.salt;
+      const bytes = new Uint8Array(hex.length / 2);
+      for (let i = 0; i < hex.length; i += 2) bytes[i / 2] = parseInt(hex.substr(i, 2), 16);
+      setSalt(bytes);
       setState('session');
       initSocketDirect();
     } catch (err) { setVerifyError(err.message); }
