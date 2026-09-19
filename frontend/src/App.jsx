@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { api } from './api';
 import {
-  initSocket as initSocketDirect, disconnectSocket,
+  initSocketDirect, disconnectSocket,
   onClipboardItem, offClipboardItem,
   onClipboardDeleted, offClipboardDeleted,
   onConnect, offConnect,
