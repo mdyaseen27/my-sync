@@ -30,6 +30,7 @@ export default function App() {
   const [showSetup, setShowSetup] = useState(false);
   
   const pingIntervalRef = useRef(null);
+  const socketRef = useRef(null);
   
   const showToast = useCallback((message, type = 'info') => {
     setToast({ message, type });
@@ -70,6 +71,8 @@ export default function App() {
   }, []);
   
   const initSocket = useCallback(() => {
+    const socket = initSocketDirect();
+    socketRef.current = socket;
     const handleClipboardItem = (item) => {
       setItems(prev => prev.some(i => i.id === item.id) ? prev : [{ ...item, createdAt: new Date(item.createdAt).getTime() }, ...prev].slice(0, 100));
     };
@@ -81,7 +84,7 @@ export default function App() {
     onClipboardDeleted(handleClipboardDeleted);
     onConnect(handleConnect);
     onDisconnect(handleDisconnect);
-    pingIntervalRef.current = setInterval(() => { try { const s = new (await import('socket.io-client')).io(); } catch {} }, 30000);
+    pingIntervalRef.current = setInterval(() => { socketRef.current?.emit('ping'); }, 30000);
     
     return () => {
       offClipboardItem(handleClipboardItem);
