@@ -6,19 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-<<<<<<< HEAD
-      "destination": "https://my-sync.onrender.com/api/"
-    }
-  ],
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
-}
-=======
       "destination": "https://my-sync.onrender.com/api/:path*"
     }
   ]
 }
->>>>>>> 509f100 (Update Render URL to my-sync.onrender.com)
