@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "cd ../frontend && npm install && npm run build && mkdir -p ../backend/frontend/dist && cp -r ../frontend/dist/* ../backend/frontend/dist/",
+    "build": "cd ../frontend && npm install && npx vite build && mkdir -p ../backend/frontend/dist && cp -r ../frontend/dist/* ../backend/frontend/dist/",
     "start": "node index.js",
     "dev": "node --watch index.js"
   },
